@@ -1,0 +1,27 @@
+@import "@/styles/theme.scss";
+@import "@/styles/mixins/text.scss";
+
+.label {
+  color: $text-black;
+  @include TTravelText(14px, $text-black, 500);
+
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+
+  .input {
+    padding: 12px;
+    border-radius: 4px;
+    border: 1px solid rgba($black-aplha, 0.16);
+    background: rgba($black-aplha, 0.04);
+    @include TTravelText(14px, rgba($black-aplha, 1), 400);
+
+    &::placeholder {
+      @include TTravelText(14px, rgba($black-aplha, 0.48), 400);
+    }
+  }
+
+  .error {
+    color: $red;
+  }
+}

@@ -1,0 +1,8 @@
+@mixin TTravelText($size, $color, $weight, $line-height: 20px) {
+  color: $color;
+  font-family: var(--TT-Travels-Trail);
+  font-size: $size;
+  font-style: normal;
+  font-weight: $weight;
+  line-height: $line-height;
+}

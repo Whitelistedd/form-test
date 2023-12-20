@@ -1,0 +1,21 @@
+@import "@/styles/theme.scss";
+@import "@/styles/mixins/text.scss";
+
+.button {
+  width: max-content;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 4px;
+  @include TTravelText(14px, rgba($grey, 1), 500);
+
+  &--variant-1 {
+    color: $grey;
+    background-color: $purple;
+  }
+
+  &--variant-2 {
+    color: $purple;
+    background-color: transparent;
+    border: 1.5px solid $purple;
+  }
+}
