@@ -1,0 +1,31 @@
+@import "@/styles/theme.scss";
+@import "@/styles/mixins/text.scss";
+
+.checkbox {
+  display: flex;
+  height: 16px;
+  gap: 10px;
+  @include TTravelText(14px, $text-black, 400);
+
+  &__input {
+    display: none;
+  }
+  &__square {
+    display: flex;
+    gap: 10px;
+    height: 16px;
+    border-radius: 4px;
+    outline: 1.5px solid rgba($black-alpha, 0.24);
+    background: none;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__check {
+  }
+  &__input:checked + label {
+    background: $purple;
+  }
+}

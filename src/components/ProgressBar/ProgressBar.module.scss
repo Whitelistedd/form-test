@@ -1,0 +1,63 @@
+@import "@/styles/theme.scss";
+@import "@/styles/mixins/text.scss";
+
+.container {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+
+  &__circle_container {
+    margin-top: -4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+
+    @include TTravelText(14px, $text-grey, 400);
+  }
+
+  .active,
+  .checked {
+    span {
+      @include TTravelText(14px, $purple, 700);
+    }
+  }
+
+  &__circle {
+    min-width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: $text-white;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0px -1px;
+
+    &--checked {
+      background: url("../../assets/svg/check.svg") $purple;
+    }
+
+    &--active {
+      background: $purple;
+      &::after {
+        content: "";
+        position: absolute;
+        width: 2px;
+        height: 2px;
+        background-color: white;
+      }
+    }
+  }
+
+  &__line {
+    width: 100%;
+    height: 8px;
+    background-color: rgba($black-alpha, 0.08);
+    border: none;
+
+    &--active {
+      background-color: $purple;
+    }
+  }
+}

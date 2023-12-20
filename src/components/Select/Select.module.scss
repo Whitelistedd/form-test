@@ -1,0 +1,58 @@
+@import "@/styles/theme.scss";
+@import "@/styles/mixins/text.scss";
+
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  .label {
+    @include TTravelText(14px, $text-black, 500);
+  }
+
+  .select {
+    border-radius: 4px;
+    border: 1px solid rgba($black-alpha, 0.16);
+    background: $grey;
+    padding: 12px;
+    height: 44px;
+    background-image: url("../../assets/img/arrow-down.png");
+    background-position: 95%;
+    background-repeat: no-repeat;
+  }
+
+  .options {
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    left: 0px;
+    bottom: -70px;
+    background-color: $grey;
+    border-radius: 4px;
+    box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.08);
+  }
+
+  .enabled {
+    display: flex;
+  }
+
+  .option {
+    @include TTravelText(14px, rgba($black-alpha, 1), 400);
+    padding: 8px 12px;
+
+    &:hover {
+      opacity: 0.5;
+      cursor: pointer;
+    }
+  }
+
+  .error {
+    @include TTravelText(14px, $red, 500);
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}
