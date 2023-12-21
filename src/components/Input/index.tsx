@@ -12,6 +12,7 @@ export const Input = (
     className,
     labelProps,
     error,
+    textArea,
     ...props
   }: InputProps,
   ref: LegacyRef<HTMLInputElement>
@@ -22,11 +23,19 @@ export const Input = (
       className={`${styles.label} ${labelProps?.className}`}
     >
       {label}
-      <input
-        {...register(name as any, rules)}
-        {...props}
-        className={`${styles.input} ${className}`}
-      />
+      {textArea ? (
+        <textarea
+          {...register(name, rules)}
+          {...props}
+          className={`${styles.input} ${className}`}
+        />
+      ) : (
+        <input
+          {...register(name, rules)}
+          {...props}
+          className={`${styles.input} ${className}`}
+        />
+      )}
       {error && <span className={styles.error}>{error}</span>}
     </label>
   );

@@ -18,4 +18,8 @@
     background-color: transparent;
     border: 1.5px solid $purple;
   }
+
+  &:hover {
+    cursor: pointer;
+  }
 }

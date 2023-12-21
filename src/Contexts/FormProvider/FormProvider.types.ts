@@ -1,3 +1,4 @@
+import { SexEnum } from "@/data/sex";
 import {
   Control,
   FieldArrayWithId,
@@ -12,32 +13,29 @@ import {
   UseFormWatch,
 } from "react-hook-form";
 
-export interface IFormContext {
+export interface FormContextType {
   remove: UseFieldArrayRemove;
-  append: UseFieldArrayAppend<TFormFields, "advantages">;
-  control: Control<TFormFields> | undefined;
-  fields: FieldArrayWithId<TFormFields, "advantages", "id">[] | null;
-  register: UseFormRegister<TFormFields> | (() => void);
-  watch: UseFormWatch<TFormFields> | ((fieldName?: string) => void);
-  reset: UseFormReset<TFormFields> | (() => void);
-  handleSubmit: UseFormHandleSubmit<TFormFields>;
-  clearErrors: UseFormClearErrors<TFormFields> | null;
-  errors: FieldErrors<TFormFields> | null;
-  setValue: UseFormSetValue<TFormFields> | null;
+  append: UseFieldArrayAppend<FormFields>;
+  control: Control<FormFields> | undefined;
+  fields: FieldArrayWithId<FormFields, never, "id">[] | null;
+  register: UseFormRegister<FormFields> | (() => void);
+  watch: UseFormWatch<FormFields> | ((fieldName?: string) => void);
+  reset: UseFormReset<FormFields> | (() => void);
+  handleSubmit: UseFormHandleSubmit<FormFields>;
+  clearErrors: UseFormClearErrors<FormFields> | null;
+  errors: FieldErrors<FormFields> | null;
+  setValue: UseFormSetValue<FormFields> | null;
 }
 
-export type TFormFields = {
-  phone_number: "";
+export type FormFields = {
+  phone_number: string;
   email: string;
   nickname: string;
   name: string;
   surname: string;
-  sex: 0 | 1;
-  advantages: {
-    id: string;
-    advantage: string;
-  }[];
-  checkboxGroup: string;
-  radioGroup: string;
+  sex: SexEnum;
+  advantages: string[];
+  checkbox: number[];
+  radio: string;
   aboutMe: string;
 };

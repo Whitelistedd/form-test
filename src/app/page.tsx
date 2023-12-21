@@ -9,12 +9,16 @@ import { Input } from "@/components/Input";
 import { FormContext } from "@/Contexts/FormProvider";
 import { useContext } from "react";
 import { Button } from "@/components/Button";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
-  const { register, watch, handleSubmit } = useContext(FormContext);
+  const { register, watch, handleSubmit, errors } = useContext(FormContext);
+  const router = useRouter();
+
+  console.log(watch());
 
   const onSubmit = () => {
-    console.log("w");
+    router.push("/step1");
   };
 
   return (
@@ -77,21 +81,31 @@ export default function Home() {
           <Input
             register={register}
             rules={{
+              required: "Обязательное поле",
               pattern: {
                 value:
                   /(^8|7|\+7)((\d{10})|(\s\(\d{3}\)\s\d{3}\s\d{2}\s\d{2}))/g,
-                message: "номер телефона неверен",
+                message: "Номер телефона неверен",
               },
             }}
             name="phone_number"
             label="Номер телефона"
             placeholder="+7 999 999-99-99"
+            error={errors?.phone_number?.message}
           />
           <Input
             register={register}
             name="email"
             label="Email"
+            rules={{
+              required: "Обязательное поле",
+              pattern: {
+                value: /^[\w\-\.]+@([\w-]+\.)+[\w-]{2,}$/gm,
+                message: "Email неверен",
+              },
+            }}
             placeholder="webstudio.fractal@example.com"
+            error={errors?.email?.message}
           />
         </div>
         <Button

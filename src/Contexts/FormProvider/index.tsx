@@ -1,6 +1,7 @@
 "use client";
 
-import { IFormContext, TFormFields } from "./FormProvider.types";
+import { SexEnum } from "@/data/sex";
+import { FormContextType, FormFields } from "./FormProvider.types";
 import {
   ReactNode,
   createContext,
@@ -10,7 +11,7 @@ import {
 } from "react";
 import { Form, useFieldArray, useForm } from "react-hook-form";
 
-export const FormContext = createContext<IFormContext>({
+export const FormContext = createContext<FormContextType>({
   remove: () => {},
   append: () => {},
   control: undefined,
@@ -34,24 +35,25 @@ export function FormProvider({ children }: { children: ReactNode }) {
     handleSubmit,
     clearErrors,
     formState: { errors },
-  } = useForm<TFormFields>({
+  } = useForm<FormFields>({
+    mode: "onChange",
     defaultValues: {
       phone_number: "",
       email: "",
       nickname: "",
-      first_name: "",
-      last_name: "",
-      gender: "",
+      name: "",
+      surname: "",
+      sex: SexEnum.man,
       advantages: [],
-      checkboxGroup: "",
-      radioGroup: "",
+      checkbox: [],
+      radio: "",
       aboutMe: "",
     },
   });
 
   const { fields, append, remove } = useFieldArray({
     control,
-    name: "advantages",
+    name: "advantages" as never,
   });
 
   if (!register) return;
