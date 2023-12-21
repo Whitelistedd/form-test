@@ -11,6 +11,7 @@
   background-color: $white-background;
   .wrap {
     @include form-container();
+    padding-bottom: 291px;
     display: flex;
     flex-direction: column;
     gap: 24px;
@@ -20,7 +21,7 @@
       gap: 24px;
       align-items: center;
       padding-bottom: 24px;
-      border-bottom: 1px solid rgba($black-aplha, 0.08);
+      border-bottom: 1px solid rgba($black-alpha, 0.08);
 
       &__details {
         display: flex;

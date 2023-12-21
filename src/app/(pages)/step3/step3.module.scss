@@ -1,0 +1,106 @@
+@import "@/styles/mixins/form.scss";
+@import "@/styles/mixins/text.scss";
+@import "@/styles/theme.scss";
+
+.main {
+  width: 100%;
+  height: 100%;
+  padding: 24px;
+  display: flex;
+  justify-content: center;
+  background-color: $white-background;
+  .wrap {
+    @include form-container();
+    padding: 62px 92px 80px 110px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    .inputs {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .input_container {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      &__advantage_input {
+        max-width: 300px;
+        width: 100%;
+      }
+
+      &__trash_button {
+        background: none;
+        border: none;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+
+    .add_input_button {
+      padding: 12px;
+      display: flex;
+    }
+
+    .buttons {
+      padding-top: 64px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .checkboxes {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+  }
+
+  .modal {
+    max-width: 460px;
+    width: 100%;
+
+    &__wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 48px;
+      width: 100%;
+    }
+
+    &__top {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    &__close {
+      border-radius: 50%;
+      padding: 4px;
+      background-color: rgba($black-alpha, 0.04);
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    &__error_title {
+      @include TTravelText(20px, $text-black, 700);
+    }
+
+    &__success_title {
+      max-width: 396px;
+      width: 100%;
+      text-align: center;
+      @include TTravelText(20px, $text-black, 700);
+    }
+
+    &__close_button {
+      align-self: flex-end;
+    }
+  }
+}
