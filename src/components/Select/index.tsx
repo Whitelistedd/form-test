@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import styles from "./Select.module.scss";
 import { Controller } from "react-hook-form";
 import { SelectProps } from "./Select.types";
-import { useOutsideClick } from "@/app/hooks/useOutsideClick";
+import { useOutsideClick } from "@/hooks/useOutsideClick";
 
 export const Select = ({
   name,

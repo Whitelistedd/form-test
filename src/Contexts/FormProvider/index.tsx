@@ -22,7 +22,7 @@ export const FormContext = createContext<FormContextType>({
   handleSubmit: () => async () => {},
   clearErrors: () => {},
   errors: null,
-  setValue: null,
+  setValue: (name: string, value: any) => {},
 });
 
 export function FormProvider({ children }: { children: ReactNode }) {

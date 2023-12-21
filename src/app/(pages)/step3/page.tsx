@@ -15,21 +15,33 @@ import { ProgressBar } from "@/components/ProgressBar";
 import { useRouter } from "next/navigation";
 import { FormFields } from "@/Contexts/FormProvider/FormProvider.types";
 import Image from "next/image";
+import axios from "axios";
+import { axiosInstance } from "@/lib/axios";
 
 export default function Step3() {
   const { register, watch, handleSubmit, errors } = useContext(FormContext);
   const router = useRouter();
   const [modalStatus, setModalStatus] = useState<"success" | "error" | "">("");
 
-  const onSubmit = (data: FormFields) => {
-    console.log(data);
+  const onSubmit = async (data: FormFields) => {
+    try {
+      const response = await axiosInstance.post("/submit", { data });
+      if (response.data.status === "error") {
+        setModalStatus("error");
+      } else if (response.data.status === "success") {
+        setModalStatus("success");
+      }
+    } catch (err) {
+      setModalStatus("error");
+    }
   };
 
+  const values = watch();
+
   useEffect(() => {
-    const values = watch();
     const checkboxesChecked = values?.checkbox?.find((checkbox) => checkbox);
     if (!checkboxesChecked) router.push("/");
-  }, [watch, router]);
+  }, [watch, values, router]);
 
   return (
     <main className={styles.main}>
@@ -53,7 +65,9 @@ export default function Step3() {
             </Button>
           </Link>
           <Button
-            onClick={() => handleSubmit(onSubmit)()}
+            onClick={() => {
+              handleSubmit(onSubmit)();
+            }}
             id="button-send"
             variant={1}
           >
@@ -62,8 +76,8 @@ export default function Step3() {
         </div>
       </div>
       {modalStatus === "success" && (
-        <Modal>
-          <div className={styles.modal}>
+        <Modal modalWrapProps={{ className: styles.modal }}>
+          <div className={styles.modal__wrap}>
             <h3 className={styles.modal__success_title}>
               Форма успешно отправлена
             </h3>
@@ -94,11 +108,13 @@ export default function Step3() {
               />
             </div>
             <Image width={64} height={64} alt="error-image" src={ErrorSVG} />
-            <Link className={styles.modal__close_button} href={"/"}>
-              <Button onClick={() => setModalStatus("")} id="button-close">
-                Закрыть
-              </Button>
-            </Link>
+            <Button
+              className={styles.modal__close_button}
+              onClick={() => setModalStatus("")}
+              id="button-close"
+            >
+              Закрыть
+            </Button>
           </div>
         </Modal>
       )}

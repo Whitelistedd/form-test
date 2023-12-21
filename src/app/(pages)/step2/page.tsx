@@ -25,6 +25,7 @@ export default function Step2() {
     fields,
     append,
     remove,
+    setValue,
   } = useContext(FormContext);
   const router = useRouter();
 
@@ -36,11 +37,14 @@ export default function Step2() {
     append(` `);
   };
 
+  const values = watch();
+
+  console.log(values);
+
   useEffect(() => {
-    const values = watch();
     if (!values?.nickname && !values?.name && !values?.surname && !values?.sex)
       router.push("/");
-  }, []);
+  }, [values, router]);
 
   return (
     <main className={styles.main}>
@@ -58,7 +62,14 @@ export default function Step2() {
                   id={`field-advatages-${index + 1}`}
                   name={`advantages[${index}]`}
                   register={register}
-                  error={errors?.nickname?.message}
+                  error={errors?.advantages?.[index]?.message}
+                  rules={{
+                    required: "Обязательное поле",
+                    pattern: {
+                      value: /^(?!\s$).*/,
+                      message: "Обязательное поле",
+                    },
+                  }}
                 />
                 <button className={styles.input_container__trash_button}>
                   <Image

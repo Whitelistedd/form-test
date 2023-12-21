@@ -24,7 +24,9 @@ export interface FormContextType {
   handleSubmit: UseFormHandleSubmit<FormFields>;
   clearErrors: UseFormClearErrors<FormFields> | null;
   errors: FieldErrors<FormFields> | null;
-  setValue: UseFormSetValue<FormFields> | null;
+  setValue:
+    | UseFormSetValue<FormFields>
+    | ((name: string, value: string) => void);
 }
 
 export type FormFields = {

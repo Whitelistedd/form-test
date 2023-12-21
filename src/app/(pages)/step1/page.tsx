@@ -21,10 +21,11 @@ export default function Step1() {
     router.push("/step2");
   };
 
+  const values = watch();
+
   useEffect(() => {
-    const values = watch();
     if (!values?.email && !values?.phone_number) router.push("/");
-  }, []);
+  }, [values, router]);
 
   return (
     <main className={styles.main}>

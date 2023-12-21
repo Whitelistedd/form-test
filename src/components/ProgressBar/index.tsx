@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import styles from "./ProgressBar.module.scss";
 import { ProgressBarProps } from "./ProgressBar.types";
 
@@ -9,8 +9,9 @@ export const ProgressBar = ({ currentStep, steps }: ProgressBarProps) => {
     <div className={styles.container}>
       {stepsArray?.map((step, index) =>
         index + 1 === stepsArray.length ? (
-          <>
+          <Fragment key={index}>
             <div
+              key={index}
               className={`${styles.container__circle_container} ${
                 currentStep === index + 1 ? styles["active"] : ""
               } ${currentStep > index + 1 ? styles["checked"] : ""}`}
@@ -30,9 +31,9 @@ export const ProgressBar = ({ currentStep, steps }: ProgressBarProps) => {
               />
               <span>{index + 1}</span>
             </div>
-          </>
+          </Fragment>
         ) : index === 0 ? (
-          <>
+          <Fragment key={index}>
             <div
               className={`${styles.container__circle_container} ${
                 currentStep === index + 1 ? styles["active"] : ""
@@ -60,9 +61,9 @@ export const ProgressBar = ({ currentStep, steps }: ProgressBarProps) => {
                 currentStep > index + 1 ? styles["container__line--active"] : ""
               }`}
             />
-          </>
+          </Fragment>
         ) : (
-          <>
+          <Fragment key={index}>
             <div
               className={`${styles.container__circle_container} ${
                 currentStep === index + 1 ? styles["active"] : ""
@@ -90,7 +91,7 @@ export const ProgressBar = ({ currentStep, steps }: ProgressBarProps) => {
                 currentStep > index + 1 ? styles["container__line--active"] : ""
               }`}
             />
-          </>
+          </Fragment>
         )
       )}
     </div>
